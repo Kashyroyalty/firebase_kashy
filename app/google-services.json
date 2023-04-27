@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "452829623137",
+    "project_id": "fir-kashy-app",
+    "storage_bucket": "fir-kashy-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:452829623137:android:ca2f13afe292f4a83b8b20",
+        "android_client_info": {
+          "package_name": "com.example.firebase_kashy_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "452829623137-pmjbds8q6rk4seije0kmkrf2sjkodvv2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMJeSd_-p-bE14SW_4E-wtFnHT3Nt9KGY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "452829623137-pmjbds8q6rk4seije0kmkrf2sjkodvv2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
