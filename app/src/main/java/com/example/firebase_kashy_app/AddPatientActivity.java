@@ -1,5 +1,6 @@
 package com.example.firebase_kashy_app;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -13,7 +14,6 @@ import java.util.UUID;
 public class AddPatientActivity extends AppCompatActivity {
 
     private EditText etName, etAge, etGender, etContact;
-    private Button btnSavePatient;
     private DatabaseHelper databaseHelper;
 
     @Override
@@ -22,11 +22,11 @@ public class AddPatientActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_patient);
 
         // Initialize UI elements
-        etName = findViewById(R.id.edtname);
+        etName = findViewById(R.id.edtaname);
         etAge = findViewById(R.id.edtaage);
         etGender = findViewById(R.id.edtagender);
         etContact = findViewById(R.id.edtacontact);
-        btnSavePatient = findViewById(R.id.btnSavePatient);
+        Button btnSavePatient = findViewById(R.id.btnSavePatient);
 
         // Initialize DatabaseHelper
         databaseHelper = new DatabaseHelper(this);
@@ -42,10 +42,10 @@ public class AddPatientActivity extends AppCompatActivity {
         String gender = etGender.getText().toString().trim();
         String contact = etContact.getText().toString().trim();
 
-        // Validate input
-        if (TextUtils.isEmpty(name) || TextUtils.isEmpty(age) || TextUtils.isEmpty(gender) || TextUtils.isEmpty(contact)) {
+        // Validate input fields
+        if (name.isEmpty() || age.isEmpty() || gender.isEmpty() || contact.isEmpty()) {
             Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
-            return;
+            return; // Stop further execution if validation fails
         }
 
         // Generate a unique barcode
@@ -54,16 +54,28 @@ public class AddPatientActivity extends AppCompatActivity {
         // Create a Patient object
         Patient patient = new Patient(name, age, gender, contact, barcode);
 
-        // Save to local database
-        databaseHelper.addPatient(patient);
+        try {
+            // Save to local database and get the result
+            boolean isAdded = databaseHelper.addPatient(patient);
 
-        // Show success message
-        Toast.makeText(this, "Patient added successfully!", Toast.LENGTH_SHORT).show();
+            if (isAdded) {
+                // Show success message
+                Toast.makeText(this, "Patient added successfully!", Toast.LENGTH_SHORT).show();
 
-        // Clear fields after adding
-        etName.setText("");
-        etAge.setText("");
-        etGender.setText("");
-        etContact.setText("");
+                // Clear fields after adding
+                etName.setText("");
+                etAge.setText("");
+                etGender.setText("");
+                etContact.setText("");
+            } else {
+                // Show failure message
+                Toast.makeText(this, "Failed to add patient. Please try again.", Toast.LENGTH_SHORT).show();
+            }
+        } catch (Exception e) {
+            // Handle any unexpected errors
+            Toast.makeText(this, "An error occurred: " + e.getMessage(), Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+        }
     }
+
 }

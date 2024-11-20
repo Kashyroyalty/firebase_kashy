@@ -1,5 +1,6 @@
 package com.example.firebase_kashy_app;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -49,7 +50,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     // Add a new patient to the database
-    public void addPatient(Patient patient) {
+    public boolean addPatient(Patient patient) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_NAME, patient.getName());
@@ -58,9 +59,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_CONTACT, patient.getContact());
         values.put(COLUMN_BARCODE, patient.getBarcode());
 
-        db.insert(TABLE_PATIENTS, null, values);
+        // Perform insert operation
+        long result = db.insert(TABLE_PATIENTS, null, values);
         db.close();
+
+        // Check if insert was successful
+        return result != -1;
     }
+
 
     // Get all patients from the database
     public List<Patient> getAllPatients() {
@@ -71,7 +77,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (cursor != null) {
             if (cursor.moveToFirst()) {
                 do {
-                    Patient patient = new Patient(
+                    @SuppressLint("Range") Patient patient = new Patient(
                             cursor.getString(cursor.getColumnIndex(COLUMN_NAME)),
                             cursor.getString(cursor.getColumnIndex(COLUMN_AGE)),
                             cursor.getString(cursor.getColumnIndex(COLUMN_GENDER)),
