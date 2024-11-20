@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/registration"
     tools:context=".RegisterActivity">
 
     <EditText
         android:id="@+id/edtname"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginStart="71dp"
         android:layout_marginTop="87dp"
         android:ems="10"
@@ -21,7 +22,7 @@
     <EditText
         android:id="@+id/edtemail"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginTop="48dp"
         android:ems="10"
         android:hint="Enter email"
@@ -32,7 +33,7 @@
     <EditText
         android:id="@+id/edtpassword"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginTop="48dp"
         android:ems="10"
         android:hint="Enter password"
@@ -42,12 +43,23 @@
 
     <Button
         android:id="@+id/btncreate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="206dp"
+        android:layout_height="49dp"
         android:text="Create Account"
-        app:layout_constraintEnd_toEndOf="@+id/edtpassword"
-        app:layout_constraintTop_toBottomOf="@+id/edtpassword" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.331"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.527" />
+
+    <TextView
+        android:id="@+id/tvttologin"
+        android:layout_width="203dp"
+        android:layout_height="42dp"
+        android:layout_marginBottom="240dp"
+        android:text="Already have an account "
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="71dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

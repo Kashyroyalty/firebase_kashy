@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET" tools:node="remove" />
 
     <application
         android:allowBackup="true"
@@ -14,20 +16,33 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Firebase_Kashy_app"
         tools:targetApi="31">
-        <activity
-            android:name=".LoginActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+
         <activity
-            android:name=".RegisterActivity"
+            android:name=".PatientManagementActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".SearchMedicalRecordsActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Patient"
+            android:exported="false" />
+
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".BarcodeScannerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MedicalRecordsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DashboardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,6 +50,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+
+        <activity android:name=".AddPatientActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".ViewPatientsActivity" />
     </application>
+
+
 
 </manifest>

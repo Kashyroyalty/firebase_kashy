@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Firebase_Kashy_app</string>
+    <string name="enter_name">Enter Name</string>
+    <string name="enter_age">Enter Age</string>
+    <string name="enter_gender">Enter Gender</string>
+    <string name="enter_contact_number">Enter Contact Number</string>
+    <string name="save_patient">Save Patient</string>
 </resources>

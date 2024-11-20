@@ -3,7 +3,6 @@ package com.example.firebase_kashy_app
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.telephony.ims.ImsMmTelManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -13,7 +12,7 @@ class LoginActivity : AppCompatActivity() {
     lateinit var mailedit:EditText
     lateinit var passwordedit:EditText
     lateinit var loginbutton:Button
-    lateinit var registerbutton:Button
+
 
     lateinit var auth:FirebaseAuth
 
@@ -26,7 +25,7 @@ class LoginActivity : AppCompatActivity() {
         mailedit =findViewById(R.id.edtemail)
         passwordedit = findViewById(R.id.edtpassword)
         loginbutton = findViewById(R.id.btnlogin)
-        registerbutton = findViewById(R.id.edtregister)
+
 
         auth = FirebaseAuth.getInstance()
 
@@ -44,7 +43,7 @@ class LoginActivity : AppCompatActivity() {
                     if (it.isSuccessful){
                         Toast.makeText(this, "Login Successfull", Toast.LENGTH_SHORT).show()
 
-                        var gotomain = Intent(this, MainActivity::class.java)
+                        var gotomain = Intent(this, DashboardActivity::class.java)
                         startActivity(gotomain)
                         finish()
                     }else{
@@ -54,11 +53,7 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-        registerbutton.setOnClickListener {
-            var gotoregister = Intent(this, RegisterActivity::class.java)
-            startActivity(gotoregister)
-            finish()
-        }
+
 
     }
 }
