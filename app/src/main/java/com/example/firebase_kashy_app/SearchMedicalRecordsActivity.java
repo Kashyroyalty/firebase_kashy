@@ -53,7 +53,8 @@ public class SearchMedicalRecordsActivity extends AppCompatActivity {
             if (task.isSuccessful() && task.getResult().exists()) {
                 for (DataSnapshot data : task.getResult().getChildren()) {
                     Patient patient = data.getValue(Patient.class);
-                    String details = "Name: " + patient.getName() + "\nAge: " + patient.getAge() + "\nGender: " + patient.getGender() + "\nContact: " + patient.getContact();
+                    assert patient != null;
+                    String details = "Id: "+ patient.getId() + "\nName: " + patient.getName() + "\nAge: " + patient.getAge() + "\nGender: " + patient.getGender() + "\nContact: " + patient.getContact();
                     tvRecordDetails.setText(details);
                 }
             } else {

@@ -15,6 +15,14 @@
         android:textStyle="bold" />
 
     <TextView
+        android:id="@+id/tViD"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Patient Id"
+        android:textSize="14sp"
+        android:textColor="@android:color/darker_gray"  />
+
+    <TextView
         android:id="@+id/tvAge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

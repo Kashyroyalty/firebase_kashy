@@ -24,7 +24,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_AGE = "age";
     private static final String COLUMN_GENDER = "gender";
     private static final String COLUMN_CONTACT = "contact";
-    private static final String COLUMN_BARCODE = "barcode";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -33,15 +32,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATE_PATIENTS_TABLE = "CREATE TABLE " + TABLE_PATIENTS + "("
-                + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + COLUMN_ID + " TEXT PRIMARY KEY," // id as TEXT (UUID)
                 + COLUMN_NAME + " TEXT,"
-                + COLUMN_AGE + " TEXT,"
+                + COLUMN_AGE + " INTEGER,"
                 + COLUMN_GENDER + " TEXT,"
-                + COLUMN_CONTACT + " TEXT,"
-                + COLUMN_BARCODE + " TEXT"
+                + COLUMN_CONTACT + " TEXT"
                 + ")";
         db.execSQL(CREATE_PATIENTS_TABLE);
     }
+
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -53,11 +52,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public boolean addPatient(Patient patient) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
+        values.put(COLUMN_ID, patient.getId()); // Save the unique ID
         values.put(COLUMN_NAME, patient.getName());
         values.put(COLUMN_AGE, patient.getAge());
         values.put(COLUMN_GENDER, patient.getGender());
         values.put(COLUMN_CONTACT, patient.getContact());
-        values.put(COLUMN_BARCODE, patient.getBarcode());
 
         // Perform insert operation
         long result = db.insert(TABLE_PATIENTS, null, values);
@@ -66,6 +65,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // Check if insert was successful
         return result != -1;
     }
+
 
 
     // Get all patients from the database
@@ -78,11 +78,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             if (cursor.moveToFirst()) {
                 do {
                     @SuppressLint("Range") Patient patient = new Patient(
+                            cursor.getString(cursor.getColumnIndex(COLUMN_ID)),
                             cursor.getString(cursor.getColumnIndex(COLUMN_NAME)),
                             cursor.getString(cursor.getColumnIndex(COLUMN_AGE)),
                             cursor.getString(cursor.getColumnIndex(COLUMN_GENDER)),
-                            cursor.getString(cursor.getColumnIndex(COLUMN_CONTACT)),
-                            cursor.getString(cursor.getColumnIndex(COLUMN_BARCODE))
+                            cursor.getString(cursor.getColumnIndex(COLUMN_CONTACT))
                     );
                     patientList.add(patient);
                 } while (cursor.moveToNext());
@@ -92,4 +92,34 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return patientList;
     }
+
+    public List<Patient> getPatientsByQuery(String query) {
+        List<Patient> patientList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // Query to search by name or ID
+        String searchQuery = "SELECT * FROM " + TABLE_PATIENTS +
+                " WHERE " + COLUMN_NAME + " LIKE ? OR " + COLUMN_ID + " LIKE ?";
+        Cursor cursor = db.rawQuery(searchQuery, new String[]{"%" + query + "%", "%" + query + "%"});
+
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                do {
+                    @SuppressLint("Range") Patient patient = new Patient(
+                            cursor.getString(cursor.getColumnIndex(COLUMN_ID)),
+                            cursor.getString(cursor.getColumnIndex(COLUMN_NAME)),
+                            cursor.getString(cursor.getColumnIndex(COLUMN_AGE)),
+                            cursor.getString(cursor.getColumnIndex(COLUMN_GENDER)),
+                            cursor.getString(cursor.getColumnIndex(COLUMN_CONTACT))
+                    );
+                    patientList.add(patient);
+                } while (cursor.moveToNext());
+            }
+            cursor.close();
+        }
+        db.close();
+        return patientList;
+    }
+
+
 }

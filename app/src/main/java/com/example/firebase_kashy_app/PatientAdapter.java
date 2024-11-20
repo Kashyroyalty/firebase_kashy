@@ -14,6 +14,10 @@ public class PatientAdapter extends ArrayAdapter<Patient> {
     private Context context;
     private List<Patient> patients;
 
+    public interface OnItemClickListener {
+        void onItemClick(Patient patient);
+    }
+
     public PatientAdapter(Context context, List<Patient> patients) {
         super(context, 0, patients);
         this.context = context;
@@ -28,11 +32,13 @@ public class PatientAdapter extends ArrayAdapter<Patient> {
 
         Patient patient = patients.get(position);
 
+        TextView tvId = convertView.findViewById(R.id.tViD);
         TextView tvName = convertView.findViewById(R.id.tvName);
         TextView tvAge = convertView.findViewById(R.id.tvAge);
         TextView tvGender = convertView.findViewById(R.id.tvGender);
         TextView tvContact = convertView.findViewById(R.id.tvContact);
 
+        tvId.setText(patient.getId());
         tvName.setText(patient.getName());
         tvAge.setText(patient.getAge());
         tvGender.setText(patient.getGender());

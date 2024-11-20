@@ -16,6 +16,17 @@
         android:textStyle="bold"
         android:layout_gravity="center_horizontal" />
 
+    <EditText
+        android:id="@+id/etSearchInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter name or ID to search"
+        android:inputType="text"
+        android:padding="8dp"
+        android:background="@android:drawable/edit_text"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp" />
+
     <Button
         android:id="@+id/btnSearchRecords"
         android:layout_width="match_parent"
@@ -24,4 +35,11 @@
         android:backgroundTint="#03A9F4"
         android:textColor="#FFFFFF"
         android:layout_marginBottom="10dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvPatientRecords"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="16dp" />
+
 </LinearLayout>

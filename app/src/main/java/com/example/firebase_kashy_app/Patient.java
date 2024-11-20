@@ -1,18 +1,23 @@
 package com.example.firebase_kashy_app;
 
 public class Patient {
+    private String id; // Unique ID for the patient
     private String name;
     private String age;
     private String gender;
     private String contact;
-    private String barcode;
-
-    public Patient(String name, String age, String gender, String contact, String barcode) {
+    // Constructor including the unique ID
+    public Patient(String id, String name, String age, String gender, String contact) {
+        this.id = id;
         this.name = name;
         this.age = age;
         this.gender = gender;
         this.contact = contact;
-        this.barcode = barcode;
+    }
+
+    // Getters
+    public String getId() {
+        return id;
     }
 
     public String getName() {
@@ -31,7 +36,24 @@ public class Patient {
         return contact;
     }
 
-    public String getBarcode() {
-        return barcode;
+    // Setters (if needed, optional)
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
     }
 }
