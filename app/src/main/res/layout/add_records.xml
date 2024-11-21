@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="#F5F5F5">
+
+    <!-- Inner LinearLayout to hold all the views -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Title Section -->
+        <TextView
+            android:id="@+id/tvAddMedicalRecord"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Medical Record"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:textColor="#212121"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Patient Identification Section -->
+        <TextView
+            android:id="@+id/tvPatientIdentification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Patient Identification"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#03A9F4"
+            android:layout_marginTop="16dp" />
+
+        <EditText
+            android:id="@+id/etPatientName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter patient name"
+            android:inputType="text"
+            android:layout_marginTop="8dp"
+            android:padding="10dp"
+            android:background="@color/white"/>
+
+        <EditText
+            android:id="@+id/etPatientID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter patient ID"
+            android:inputType="number"
+            android:layout_marginTop="8dp"
+            android:padding="10dp"
+            android:background="@color/white"/>
+
+        <!-- Medical History Section -->
+        <TextView
+            android:id="@+id/tvMedicalHistory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Medical History"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#03A9F4"
+            android:layout_marginTop="16dp" />
+
+        <EditText
+            android:id="@+id/etMedicalHistory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter medical history details"
+            android:inputType="textMultiLine"
+            android:layout_marginTop="8dp"
+            android:padding="10dp"
+            android:background="@color/white"/>
+
+        <!-- Vital Signs Section -->
+        <TextView
+            android:id="@+id/tvVitalSigns"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vital Signs"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#03A9F4"
+            android:layout_marginTop="16dp" />
+
+        <EditText
+            android:id="@+id/etBloodPressure"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter blood pressure"
+            android:inputType="text"
+            android:layout_marginTop="8dp"
+            android:padding="10dp"
+            android:background="@color/white"/>
+
+        <EditText
+            android:id="@+id/etHeartRate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter heart rate"
+            android:inputType="number"
+            android:layout_marginTop="8dp"
+            android:padding="10dp"
+            android:background="@color/white"/>
+
+        <EditText
+            android:id="@+id/etTemperature"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter body temperature"
+            android:inputType="number"
+            android:layout_marginTop="8dp"
+            android:padding="10dp"
+            android:background="@color/white"/>
+
+        <!-- Physical Examination Section -->
+        <TextView
+            android:id="@+id/tvPhysicalExamination"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Physical Examination"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#03A9F4"
+            android:layout_marginTop="16dp" />
+
+        <EditText
+            android:id="@+id/etExaminationNotes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter physical examination notes"
+            android:inputType="textMultiLine"
+            android:layout_marginTop="8dp"
+            android:padding="10dp"
+            android:background="@color/white"/>
+
+        <!-- Test Results Section -->
+        <TextView
+            android:id="@+id/tvTestResults"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Laboratory and Diagnostic Test Results"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#03A9F4"
+            android:layout_marginTop="16dp" />
+
+        <EditText
+            android:id="@+id/etTestResults"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter test results"
+            android:inputType="textMultiLine"
+            android:layout_marginTop="8dp"
+            android:padding="10dp"
+            android:background="@color/white"/>
+
+        <!-- Current Medications Section -->
+        <TextView
+            android:id="@+id/tvCurrentMedications"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Current Treatment and Medications"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#03A9F4"
+            android:layout_marginTop="16dp" />
+
+        <EditText
+            android:id="@+id/etCurrentMedications"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter current medications"
+            android:inputType="textMultiLine"
+            android:layout_marginTop="8dp"
+            android:padding="10dp"
+            android:background="@color/white"/>
+
+        <!-- Surgical History Section -->
+        <TextView
+            android:id="@+id/tvSurgicalHistory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Surgical and Procedure Notes"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#03A9F4"
+            android:layout_marginTop="16dp" />
+
+        <EditText
+            android:id="@+id/etSurgicalHistory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter surgical history"
+            android:inputType="textMultiLine"
+            android:layout_marginTop="8dp"
+            android:padding="10dp"
+            android:background="@color/white"/>
+
+        <!-- Referral Section -->
+        <TextView
+            android:id="@+id/tvReferrals"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Referral and Consultation Notes"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#03A9F4"
+            android:layout_marginTop="16dp" />
+
+        <EditText
+            android:id="@+id/etReferrals"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter referral details"
+            android:inputType="textMultiLine"
+            android:layout_marginTop="8dp"
+            android:padding="10dp"
+            android:background="@color/white"/>
+
+        <!-- Consent Section -->
+        <TextView
+            android:id="@+id/tvConsent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Patient Consent Forms"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#03A9F4"
+            android:layout_marginTop="16dp" />
+
+        <EditText
+            android:id="@+id/etConsent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter consent details"
+            android:inputType="textMultiLine"
+            android:layout_marginTop="8dp"
+            android:padding="10dp"
+            android:background="@color/white"/>
+
+        <!-- Add Record Button -->
+        <Button
+            android:id="@+id/btnAddRecord"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Record"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="#FF9800"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+</ScrollView>

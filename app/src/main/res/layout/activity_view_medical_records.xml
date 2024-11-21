@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="#F5F5F5">
+
+    <!-- Inner LinearLayout to hold all the views -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Title Section -->
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Medical Record Details"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:textColor="#212121"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Patient Identification Section -->
+        <TextView
+            android:id="@+id/tvPatientIdentification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Patient Identification"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#03A9F4"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:id="@+id/tvPatientName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Patient Name: "
+            android:textSize="16sp"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:id="@+id/tvPatientId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Patient ID: "
+            android:textSize="16sp"
+            android:layout_marginTop="8dp"/>
+
+        <!-- Medical History Section -->
+        <TextView
+            android:id="@+id/tvMedicalHistory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Medical History"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#03A9F4"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:id="@+id/tvMedicalHistoryContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Medical history details"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp"/>
+
+        <!-- Vital Signs Section -->
+        <TextView
+            android:id="@+id/tvVitalSigns"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vital Signs"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#03A9F4"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:id="@+id/tvBloodPressure"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Blood Pressure: "
+            android:textSize="16sp"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:id="@+id/tvHeartRate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Heart Rate: "
+            android:textSize="16sp"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:id="@+id/tvTemperature"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Temperature: "
+            android:textSize="16sp"
+            android:layout_marginTop="8dp"/>
+
+        <!-- Physical Examination Section -->
+        <TextView
+            android:id="@+id/tvPhysicalExamination"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Physical Examination"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#03A9F4"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:id="@+id/tvExaminationNotes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Examination notes"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp"/>
+
+        <!-- Test Results Section -->
+        <TextView
+            android:id="@+id/tvTestResults"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Test Results"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#03A9F4"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:id="@+id/tvTestResultsContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Test results details"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp"/>
+
+        <!-- Medications Section -->
+        <TextView
+            android:id="@+id/tvMedications"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Medications"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#03A9F4"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:id="@+id/tvMedicationsContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Medications details"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp"/>
+
+        <!-- Surgical History Section -->
+        <TextView
+            android:id="@+id/tvSurgicalHistory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Surgical History"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#03A9F4"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:id="@+id/tvSurgicalHistoryContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Surgical history details"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp"/>
+
+        <!-- Referrals Section -->
+        <TextView
+            android:id="@+id/tvReferrals"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Referrals"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#03A9F4"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:id="@+id/tvReferralsContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Referrals details"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp"/>
+
+        <!-- Consent Section -->
+        <TextView
+            android:id="@+id/tvConsent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Consent"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#03A9F4"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:id="@+id/tvConsentContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Consent details"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp"/>
+    </LinearLayout>
+</ScrollView>

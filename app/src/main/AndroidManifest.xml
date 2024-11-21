@@ -33,10 +33,16 @@
             android:name=".SettingsActivity"
             android:exported="false" />
         <activity
-            android:name=".BarcodeScannerActivity"
+            android:name=".RecordsAdderActivity"
             android:exported="false" />
         <activity
+            android:name=".AddRecordsActivity"
+            android:exported="false"/>
+        <activity
             android:name=".MedicalRecordsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ViewMedicalRecordsActivity"
             android:exported="false" />
         <activity
             android:name=".DashboardActivity"

@@ -46,7 +46,7 @@ public class DashboardActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Navigate to Barcode Scanning Screen
-                Intent intent = new Intent(DashboardActivity.this, BarcodeScannerActivity.class);
+                Intent intent = new Intent(DashboardActivity.this, RecordsAdderActivity.class);
                 startActivity(intent);
             }
         });

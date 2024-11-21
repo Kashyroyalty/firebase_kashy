@@ -1,5 +1,6 @@
 package com.example.firebase_kashy_app;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -44,8 +45,15 @@ public class MedicalRecordsActivity extends AppCompatActivity {
         // Handle item click in ListView
         lvPatientRecords.setOnItemClickListener((parent, view, position, id) -> {
             Patient selectedPatient = (Patient) parent.getItemAtPosition(position);
+            // Show a toast or handle other logic as necessary
             Toast.makeText(MedicalRecordsActivity.this, "Selected: " + selectedPatient.getName(), Toast.LENGTH_SHORT).show();
+
+            // Start ViewMedicalRecordsActivity and pass the patient's ID
+            Intent intent = new Intent(MedicalRecordsActivity.this, ViewMedicalRecordsActivity.class);
+            intent.putExtra("PATIENT_ID", selectedPatient.getId());  // Pass the selected patient's ID
+            startActivity(intent);
         });
+
     }
 
     private void searchRecords(String query) {
