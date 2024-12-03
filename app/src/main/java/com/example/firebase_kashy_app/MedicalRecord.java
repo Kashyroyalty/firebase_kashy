@@ -108,4 +108,36 @@ public class MedicalRecord {
     public void setConsent(String consent) {
         this.consent = consent;
     }
+
+    public String getInputMedicalHistory() {
+        return getInputMedicalHistory();
+    }
+
+    public String getInputVitalSigns() {
+        return getVitalSigns();
+    }
+
+    public String getInputExaminationNotes() {
+        return getExaminationNotes();
+    }
+
+    public String getInputTestResults() {
+       return getTestResults();
+    }
+
+    public String getInputMedications() {
+        return getMedications();
+    }
+
+    public String getInputSurgicalHistory() {
+        return getSurgicalHistory();
+    }
+
+    public String getInputReferrals() {
+        return getReferrals();
+    }
+
+    public String getInputConsent() {
+        return getConsent();
+    }
 }

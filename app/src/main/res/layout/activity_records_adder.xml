@@ -12,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Select Patient to add recrods"
+        android:textColor="@color/black"
         android:textSize="22sp"
         android:textStyle="bold"
         android:layout_gravity="center_horizontal" />
@@ -21,6 +22,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Enter name or ID to search"
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
         android:inputType="text"
         android:padding="8dp"
         android:background="@android:drawable/edit_text"

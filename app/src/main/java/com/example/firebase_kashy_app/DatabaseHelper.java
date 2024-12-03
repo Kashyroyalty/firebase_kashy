@@ -80,6 +80,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+
+
     // Method to add a medical record for a patient
     public boolean addMedicalRecord(String patientId, String medicalHistory, String vitalSigns, String examinationNotes, String testResults, String medications, String surgicalHistory, String referrals, String consent) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -112,7 +114,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             do {
                 @SuppressLint("Range") MedicalRecord record = new MedicalRecord(
                         cursor.getString(cursor.getColumnIndex(COLUMN_RECORD_ID)),
-                        cursor.getString(cursor.getColumnIndex(COLUMN_PATIENT_ID)),
+                           cursor.getString(cursor.getColumnIndex(COLUMN_PATIENT_ID)),
                         cursor.getString(cursor.getColumnIndex(COLUMN_MEDICAL_HISTORY)),
                         cursor.getString(cursor.getColumnIndex(COLUMN_VITAL_SIGNS)),
                         cursor.getString(cursor.getColumnIndex(COLUMN_EXAMINATION_NOTES)),
@@ -227,4 +229,218 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
 
+    public List<Patient> searchPatients(String searchQuery) {
+        List<Patient> patientList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // Prepare the SQL query to search by name or ID
+        String searchQueryFormatted = "%" + searchQuery + "%"; // Use wildcards for LIKE search
+        String sqlQuery = "SELECT * FROM " + TABLE_PATIENTS +
+                " WHERE " + COLUMN_NAME + " LIKE ? OR " + COLUMN_ID + " LIKE ?";
+
+        // Execute the query
+        Cursor cursor = db.rawQuery(sqlQuery, new String[]{searchQueryFormatted, searchQueryFormatted});
+
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                do {
+                    @SuppressLint("Range") Patient patient = new Patient(
+                            cursor.getString(cursor.getColumnIndex(COLUMN_ID)),
+                            cursor.getString(cursor.getColumnIndex(COLUMN_NAME)),
+                            cursor.getString(cursor.getColumnIndex(COLUMN_AGE)), // Assuming age is stored as INTEGER
+                            cursor.getString(cursor.getColumnIndex(COLUMN_GENDER)),
+                            cursor.getString(cursor.getColumnIndex(COLUMN_CONTACT))
+                    );
+                    patientList.add(patient);
+                } while (cursor.moveToNext());
+            }
+            cursor.close();
+        }
+        db.close();
+        return patientList;
+    }
 }
+/*package com.example.firebase_kashy_app;
+
+import android.annotation.SuppressLint;
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class DatabaseHelper extends SQLiteOpenHelper {
+
+    private static final String DATABASE_NAME = "hospital.db";
+    private static final int DATABASE_VERSION = 2;
+
+    // Table names
+    private static final String TABLE_PATIENTS = "patients";
+    private static final String TABLE_MEDICAL_RECORDS = "medical_records";
+
+    // Patient table columns
+    private static final String COLUMN_ID = "id";
+    private static final String COLUMN_NAME = "name";
+    private static final String COLUMN_AGE = "age";
+    private static final String COLUMN_GENDER = "gender";
+    private static final String COLUMN_CONTACT = "contact";
+
+    // Medical records table columns
+    private static final String COLUMN_RECORD_ID = "record_id";
+    private static final String COLUMN_PATIENT_ID = "patient_id";
+    private static final String COLUMN_MEDICAL_HISTORY = "medical_history";
+    private static final String COLUMN_VITAL_SIGNS = "vital_signs";
+    private static final String COLUMN_EXAMINATION_NOTES = "examination_notes";
+    private static final String COLUMN_TEST_RESULTS = "test_results";
+    private static final String COLUMN_MEDICATIONS = "medications";
+    private static final String COLUMN_SURGICAL_HISTORY = "surgical_history";
+    private static final String COLUMN_REFERRALS = "referrals";
+    private static final String COLUMN_CONSENT = "consent";
+
+    public DatabaseHelper(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        // Create Patients Table
+        String createPatientsTable = "CREATE TABLE " + TABLE_PATIENTS + "("
+                + COLUMN_ID + " TEXT PRIMARY KEY,"
+                + COLUMN_NAME + " TEXT,"
+                + COLUMN_AGE + " INTEGER,"
+                + COLUMN_GENDER + " TEXT,"
+                + COLUMN_CONTACT + " TEXT)";
+        db.execSQL(createPatientsTable);
+
+        // Create Medical Records Table
+        String createMedicalRecordsTable = "CREATE TABLE " + TABLE_MEDICAL_RECORDS + "("
+                + COLUMN_RECORD_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + COLUMN_PATIENT_ID + " TEXT,"
+                + COLUMN_MEDICAL_HISTORY + " TEXT,"
+                + COLUMN_VITAL_SIGNS + " TEXT,"
+                + COLUMN_EXAMINATION_NOTES + " TEXT,"
+                + COLUMN_TEST_RESULTS + " TEXT,"
+                + COLUMN_MEDICATIONS + " TEXT,"
+                + COLUMN_SURGICAL_HISTORY + " TEXT,"
+                + COLUMN_REFERRALS + " TEXT,"
+                + COLUMN_CONSENT + " TEXT,"
+                + "FOREIGN KEY(" + COLUMN_PATIENT_ID + ") REFERENCES " + TABLE_PATIENTS + "(" + COLUMN_ID + "))";
+        db.execSQL(createMedicalRecordsTable);
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_MEDICAL_RECORDS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PATIENTS);
+        onCreate(db);
+    }
+
+    // Add a new patient
+    public boolean addPatient(Patient patient) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_ID, patient.getId());
+        values.put(COLUMN_NAME, patient.getName());
+        values.put(COLUMN_AGE, patient.getAge());
+        values.put(COLUMN_GENDER, patient.getGender());
+        values.put(COLUMN_CONTACT, patient.getContact());
+
+        long result = db.insert(TABLE_PATIENTS, null, values);
+        db.close();
+        return result != -1;
+    }
+
+    // Add a medical record
+    public boolean addMedicalRecord(MedicalRecord record) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_PATIENT_ID, record.getPatientId());
+        values.put(COLUMN_MEDICAL_HISTORY, record.getMedicalHistory());
+        values.put(COLUMN_VITAL_SIGNS, record.getVitalSigns());
+        values.put(COLUMN_EXAMINATION_NOTES, record.getExaminationNotes());
+        values.put(COLUMN_TEST_RESULTS, record.getTestResults());
+        values.put(COLUMN_MEDICATIONS, record.getMedications());
+        values.put(COLUMN_SURGICAL_HISTORY, record.getSurgicalHistory());
+        values.put(COLUMN_REFERRALS, record.getReferrals());
+        values.put(COLUMN_CONSENT, record.getConsent());
+
+        long result = db.insert(TABLE_MEDICAL_RECORDS, null, values);
+        db.close();
+        return result != -1;
+    }
+
+    // Retrieve all medical records for a specific patient
+    public List<MedicalRecord> getMedicalRecordsByPatientId(String patientId) {
+        List<MedicalRecord> records = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = "SELECT * FROM " + TABLE_MEDICAL_RECORDS + " WHERE " + COLUMN_PATIENT_ID + " = ?";
+        try (Cursor cursor = db.rawQuery(query, new String[]{patientId})) {
+            if (cursor.moveToFirst()) {
+                do {
+                    @SuppressLint("Range")
+                    MedicalRecord record = new MedicalRecord(
+                            cursor.getInt(cursor.getColumnIndex(COLUMN_RECORD_ID)),
+                            cursor.getString(cursor.getColumnIndex(COLUMN_PATIENT_ID)),
+                            cursor.getString(cursor.getColumnIndex(COLUMN_MEDICAL_HISTORY)),
+                            cursor.getString(cursor.getColumnIndex(COLUMN_VITAL_SIGNS)),
+                            cursor.getString(cursor.getColumnIndex(COLUMN_EXAMINATION_NOTES)),
+                            cursor.getString(cursor.getColumnIndex(COLUMN_TEST_RESULTS)),
+                            cursor.getString(cursor.getColumnIndex(COLUMN_MEDICATIONS)),
+                            cursor.getString(cursor.getColumnIndex(COLUMN_SURGICAL_HISTORY)),
+                            cursor.getString(cursor.getColumnIndex(COLUMN_REFERRALS)),
+                            cursor.getString(cursor.getColumnIndex(COLUMN_CONSENT))
+                    );
+                    records.add(record);
+                } while (cursor.moveToNext());
+            }
+        }
+        db.close();
+        return records;
+    }
+
+    // Retrieve a patient by ID
+    public Patient getPatientById(String patientId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Patient patient = null;
+
+        String query = "SELECT * FROM " + TABLE_PATIENTS + " WHERE " + COLUMN_ID + " = ?";
+        try (Cursor cursor = db.rawQuery(query, new String[]{patientId})) {
+            if (cursor.moveToFirst()) {
+                patient = new Patient(
+                        cursor.getString(cursor.getColumnIndex(COLUMN_ID)),
+                        cursor.getString(cursor.getColumnIndex(COLUMN_NAME)),
+                        cursor.getString(cursor.getColumnIndex(COLUMN_AGE)),
+                        cursor.getString(cursor.getColumnIndex(COLUMN_GENDER)),
+                        cursor.getString(cursor.getColumnIndex(COLUMN_CONTACT))
+                );
+            }
+        }
+        db.close();
+        return patient;
+    }
+
+    public boolean addMedicalRecord(String patientId, String medicalHistory, String vitalSigns, String examinationNotes, String testResults, String medications, String surgicalHistory, String referrals, String consent) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_PATIENT_ID, patientId);
+        values.put(COLUMN_MEDICAL_HISTORY, medicalHistory);
+        values.put(COLUMN_VITAL_SIGNS, vitalSigns);
+        values.put(COLUMN_EXAMINATION_NOTES, examinationNotes);
+        values.put(COLUMN_TEST_RESULTS, testResults);
+        values.put(COLUMN_MEDICATIONS, medications);
+        values.put(COLUMN_SURGICAL_HISTORY, surgicalHistory);
+        values.put(COLUMN_REFERRALS, referrals);
+        values.put(COLUMN_CONSENT, consent);
+
+        long result = db.insert(TABLE_MEDICAL_RECORDS, null, values);
+        db.close();
+
+        return result != -1;
+    }
+}*/
+
+

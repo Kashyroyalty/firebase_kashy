@@ -15,7 +15,9 @@ import java.util.List;
 public class ViewPatientsActivity extends AppCompatActivity {
 
     private EditText etAdminPassword;
+    private EditText etSearch;
     private Button btnViewPatients;
+    private Button btnSearch;
     private ListView lvPatients;
     private DatabaseHelper databaseHelper;
 
@@ -28,12 +30,15 @@ public class ViewPatientsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_patients_records);
 
         etAdminPassword = findViewById(R.id.edtAdminPassword);
+        etSearch = findViewById(R.id.edtSearch); // New EditText for searching
         btnViewPatients = findViewById(R.id.btnvLogin);
+        btnSearch = findViewById(R.id.btnSearch); // New button for search
         lvPatients = findViewById(R.id.lvvPatients);
 
         databaseHelper = new DatabaseHelper(this);
 
         btnViewPatients.setOnClickListener(v -> validateAdminPassword());
+        btnSearch.setOnClickListener(v -> searchPatients());
     }
 
     private void validateAdminPassword() {
@@ -45,7 +50,7 @@ public class ViewPatientsActivity extends AppCompatActivity {
         }
 
         if (enteredPassword.equals(ADMIN_PASSWORD)) {
-            // Fetch and display patient records
+            // Fetch and display all patient records
             displayPatientRecords();
         } else {
             // Show error dialog if password is incorrect
@@ -67,4 +72,24 @@ public class ViewPatientsActivity extends AppCompatActivity {
             lvPatients.setAdapter(adapter);
         }
     }
+
+    private void searchPatients() {
+        String searchQuery = etSearch.getText().toString().trim();
+
+        if (TextUtils.isEmpty(searchQuery)) {
+            Toast.makeText(this, "Please enter a name or unique number to search", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        List<Patient> searchResults = databaseHelper.searchPatients(searchQuery);
+
+        if (searchResults.isEmpty()) {
+            Toast.makeText(this, "No matching patient records found", Toast.LENGTH_SHORT).show();
+        } else {
+            // Create and set the adapter for the ListView with search results
+            PatientAdapter adapter = new PatientAdapter(this, searchResults);
+            lvPatients.setAdapter(adapter);
+        }
+    }
+
 }

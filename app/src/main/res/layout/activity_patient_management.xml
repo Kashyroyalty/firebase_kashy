@@ -13,7 +13,7 @@
         android:text="Add Patient"
         android:layout_marginBottom="16dp"
         android:textSize="18sp"
-        android:backgroundTint="@color/black"
+        android:backgroundTint="#00796B"
         android:textColor="@android:color/white" />
 
     <Button
@@ -22,6 +22,6 @@
         android:layout_height="wrap_content"
         android:text="View Patients"
         android:textSize="18sp"
-        android:backgroundTint="@color/black"
+        android:backgroundTint="#00796B"
         android:textColor="@android:color/white" />
 </LinearLayout>
